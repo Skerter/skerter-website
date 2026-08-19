@@ -1,0 +1,46 @@
+---
+import PressureWord from "./PressureWord.astro";
+import "../styles/pressure.css";
+---
+
+<main class="hero hero--pressure" data-hero data-motion="on">
+  <a class="skip-link" href="/projects/">Skip to projects</a>
+
+  <header class="hero__header">
+    <a class="hero__mark" href="/" aria-label="Skerter home">
+      <span>S/01</span>
+      <span class="hero__status-dot" aria-hidden="true"></span>
+    </a>
+
+    <p class="hero__concept">Unseen force / visible behaviour</p>
+
+    <nav class="hero__nav" aria-label="Primary navigation">
+      <button
+        class="hero__motion-toggle"
+        type="button"
+        data-motion-toggle
+        aria-pressed="true"
+      >
+        Response: on
+      </button>
+      <a id="projects-link" href="/projects/">
+        Projects
+        <span aria-hidden="true">↗</span>
+      </a>
+    </nav>
+  </header>
+
+  <section class="hero__stage" aria-labelledby="hero-title">
+    <PressureWord />
+  </section>
+
+  <footer class="hero__footer">
+    <p>Python / backend / ML</p>
+    <p class="hero__interaction-hint" data-pressure-hint>Move / click</p>
+    <p>2026 / S-01</p>
+  </footer>
+</main>
+
+<script>
+  import "../scripts/hero";
+</script>
