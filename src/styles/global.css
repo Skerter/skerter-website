@@ -76,68 +76,9 @@ h1 {
   transform: translateY(0);
 }
 
-.projects-placeholder {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  min-height: 100svh;
-  padding: var(--page-pad);
-}
-
-.projects-placeholder__header {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  gap: 1rem;
-  color: var(--color-muted);
-  font-size: 0.72rem;
-  font-weight: 560;
-  letter-spacing: 0.1em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.projects-placeholder__header a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.75rem;
-  color: var(--color-bone);
-}
-
-.projects-placeholder__header a:hover {
-  color: var(--color-heat);
-}
-
-.projects-placeholder section {
-  align-self: end;
-  padding-block: clamp(3rem, 10svh, 7rem) clamp(1rem, 3svh, 2rem);
-}
-
-.projects-placeholder__eyebrow,
-.projects-placeholder__note {
-  color: var(--color-muted);
-  font-size: clamp(0.68rem, 1vw, 0.8rem);
-  font-weight: 520;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.projects-placeholder h1 {
-  margin-block: 0.12em 0.16em;
-  font-size: clamp(4rem, 20vw, 13rem);
-  font-weight: 300;
-  letter-spacing: -0.065em;
-  line-height: 0.84;
-}
-
 @media (min-width: 48rem) {
   :root {
     --page-pad: clamp(2rem, 4vw, 5rem);
-  }
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .projects-placeholder__header a {
-    transition: color 180ms ease-out;
   }
 }
 

@@ -1,23 +1,99 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/projects.css";
 ---
 
 <BaseLayout
   title="Projects — Skerter"
-  description="Selected backend and ML systems projects by Skerter."
+  description="Selected backend products and ML systems built by Skerter."
 >
-  <main class="projects-placeholder">
-    <header class="projects-placeholder__header">
-      <a href="/">← Skerter</a>
-      <p>Projects / 01</p>
+  <a class="skip-link" href="#projects">Skip to projects</a>
+
+  <main class="projects-page">
+    <header class="projects-header">
+      <a class="projects-header__identity" href="/" aria-label="Skerter home">
+        Skerter
+      </a>
+      <a class="projects-header__home" href="/">
+        Home <span aria-hidden="true">&swarr;</span>
+      </a>
     </header>
 
-    <section>
-      <p class="projects-placeholder__eyebrow">The serious part</p>
-      <h1>Projects</h1>
-      <p class="projects-placeholder__note">
-        Selected work is being assembled.
-      </p>
+    <section class="projects-intro" aria-labelledby="projects-title">
+      <p>Selected work / 03</p>
+      <h1 id="projects-title">
+        Projects<span aria-hidden="true">.</span>
+      </h1>
     </section>
+
+    <section id="projects" class="project-index" aria-label="Selected projects">
+      <article class="project-row" aria-labelledby="demoplast-title">
+        <p class="project-row__number" aria-hidden="true">01</p>
+
+        <header class="project-row__heading">
+          <h2 id="demoplast-title">DemoPlast</h2>
+          <p>Commercial backend / Live</p>
+        </header>
+
+        <p class="project-row__description">
+          A lead survives even when integrations fail.
+        </p>
+
+        <a
+          class="project-row__cta"
+          href="https://github.com/Skerter/django-plastic-landing"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="View the DemoPlast project on GitHub"
+        >
+          <span>View project</span>
+          <span aria-hidden="true">&nearr;</span>
+        </a>
+      </article>
+
+      <article class="project-row" aria-labelledby="churn-title">
+        <p class="project-row__number" aria-hidden="true">02</p>
+
+        <header class="project-row__heading">
+          <h2 id="churn-title">DCP</h2>
+          <p>Distributed churn prediction / Live demo</p>
+        </header>
+
+        <p class="project-row__description">
+          One workflow. Three runtimes.
+        </p>
+
+        <a
+          class="project-row__cta"
+          href="https://github.com/Skerter/distributed-churn-prediction"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="View the Distributed Churn Prediction project on GitHub"
+        >
+          <span>View project</span>
+          <span aria-hidden="true">&nearr;</span>
+        </a>
+      </article>
+
+      <article class="project-row" aria-labelledby="huld-title">
+        <p class="project-row__number" aria-hidden="true">03</p>
+
+        <header class="project-row__heading">
+          <h2 id="huld-title">Huld</h2>
+          <p>Private infrastructure / In progress</p>
+        </header>
+
+        <p class="project-row__description">
+          Durable state for systems that fail halfway through.
+        </p>
+
+        <p class="project-row__state">In development</p>
+      </article>
+    </section>
+
+    <footer class="projects-footer">
+      <p>Python / backend / ML systems</p>
+      <p>2026</p>
+    </footer>
   </main>
 </BaseLayout>
