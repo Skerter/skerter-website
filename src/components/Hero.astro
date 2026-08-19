@@ -1,46 +1,36 @@
 ---
-import PressureWord from "./PressureWord.astro";
-import "../styles/pressure.css";
+import "../styles/quiet.css";
 ---
 
-<main class="hero hero--pressure" data-hero data-motion="on">
-  <a class="skip-link" href="/projects/">Skip to projects</a>
+<a class="skip-link" href="#intro">Skip to introduction</a>
 
-  <header class="hero__header">
-    <a class="hero__mark" href="/" aria-label="Skerter home">
-      <span>S/01</span>
-      <span class="hero__status-dot" aria-hidden="true"></span>
+<main class="quiet-home">
+  <header class="quiet-home__header">
+    <a class="quiet-home__identity" href="/" aria-label="Skerter home">
+      Skerter
     </a>
 
-    <p class="hero__concept">Unseen force / visible behaviour</p>
-
-    <nav class="hero__nav" aria-label="Primary navigation">
-      <button
-        class="hero__motion-toggle"
-        type="button"
-        data-motion-toggle
-        aria-pressed="true"
-      >
-        Response: on
-      </button>
-      <a id="projects-link" href="/projects/">
+    <nav aria-label="Primary navigation">
+      <a class="quiet-home__projects" href="/projects/">
         Projects
-        <span aria-hidden="true">↗</span>
+        <span aria-hidden="true">&nearr;</span>
       </a>
     </nav>
   </header>
 
-  <section class="hero__stage" aria-labelledby="hero-title">
-    <PressureWord />
+  <section id="intro" class="quiet-home__intro" aria-labelledby="hero-title">
+    <a class="quiet-home__statement" href="/projects/">
+      <h1 id="hero-title">
+        <span class="quiet-home__line">I build the parts</span>
+        <span class="quiet-home__line">
+          you don&rsquo;t <span class="quiet-home__emphasis">see<span class="quiet-home__period" aria-hidden="true">.</span></span>
+        </span>
+      </h1>
+    </a>
   </section>
 
-  <footer class="hero__footer">
-    <p>Python / backend / ML</p>
-    <p class="hero__interaction-hint" data-pressure-hint>Move / click</p>
-    <p>2026 / S-01</p>
+  <footer class="quiet-home__footer">
+    <p>Python / backend / ML systems</p>
+    <p>2026</p>
   </footer>
 </main>
-
-<script>
-  import "../scripts/hero";
-</script>
