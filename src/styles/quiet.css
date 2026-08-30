@@ -27,7 +27,7 @@
 }
 
 .quiet-home__identity,
-.quiet-home__projects {
+.quiet-home__nav-link {
   display: inline-flex;
   align-items: center;
   min-height: 2.75rem;
@@ -37,12 +37,18 @@
   color: var(--color-bone);
 }
 
-.quiet-home__projects {
+.quiet-home__nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 3vw, 2.5rem);
+}
+
+.quiet-home__nav-link {
   gap: 0.45rem;
   color: var(--color-bone);
 }
 
-.quiet-home__projects span {
+.quiet-home__nav-link span {
   color: var(--color-heat);
   transform-origin: center;
 }
@@ -134,21 +140,21 @@
 
 @media (hover: hover) and (pointer: fine) {
   .quiet-home__identity,
-  .quiet-home__projects {
+  .quiet-home__nav-link {
     transition: color 180ms ease-out;
   }
 
-  .quiet-home__projects span,
+  .quiet-home__nav-link span,
   .quiet-home__period {
     transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .quiet-home__identity:hover,
-  .quiet-home__projects:hover {
+  .quiet-home__nav-link:hover {
     color: var(--color-heat);
   }
 
-  .quiet-home__projects:hover span {
+  .quiet-home__nav-link:hover span {
     transform: translate(0.14rem, -0.14rem);
   }
 

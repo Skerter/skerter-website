@@ -21,6 +21,8 @@ local variable typeface, Commissioner, and static Astro output.
 - `/` — finished minimalist cover.
 - `/projects/` — accepted image-free project index. Individual case-study
   routes are future work; the current project links lead to their repositories.
+- `/contacts/` — direct email, Telegram, and GitHub links in the same repeated
+  typographic system; no contact form or client-side JavaScript.
 
 ## Projects direction
 
@@ -41,6 +43,10 @@ The page keeps the homepage's graphite, bone, muted, and orange palette and the
 same Commissioner typeface. It also ships without client-side JavaScript.
 
 ## Development
+
+On Windows, double-click `start-local.cmd` or run it from the project root. It
+installs locked dependencies when needed and starts the site at
+`http://127.0.0.1:4321/`.
 
 ```text
 npm run dev

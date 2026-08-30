@@ -23,18 +23,24 @@
 }
 
 .projects-header__identity,
-.projects-header__home {
+.projects-header__link {
   display: inline-flex;
   align-items: center;
   min-height: 2.75rem;
   color: var(--color-bone);
 }
 
-.projects-header__home {
+.projects-header__nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 3vw, 2.5rem);
+}
+
+.projects-header__link {
   gap: 0.4rem;
 }
 
-.projects-header__home span {
+.projects-header__link span {
   color: var(--color-heat);
 }
 
@@ -203,12 +209,12 @@
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .projects-header__identity,
-  .projects-header__home {
+  .projects-header__link {
     transition: color 180ms ease-out;
   }
 
   .projects-header__identity:hover,
-  .projects-header__home:hover {
+  .projects-header__link:hover {
     color: var(--color-heat);
   }
 

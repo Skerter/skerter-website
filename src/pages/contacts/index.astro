@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/contacts.css";
+
+const contacts = [
+  {
+    number: "01",
+    name: "Email",
+    note: "Project and work enquiries",
+    value: "geopank55@gmail.com",
+    action: "Write",
+    href: "mailto:geopank55@gmail.com",
+    external: false,
+  },
+  {
+    number: "02",
+    name: "Telegram",
+    note: "Direct conversation",
+    value: "@geopank55",
+    action: "Message",
+    href: "https://t.me/geopank55",
+    external: true,
+  },
+  {
+    number: "03",
+    name: "GitHub",
+    note: "Code and projects",
+    value: "@Skerter",
+    action: "Open",
+    href: "https://github.com/Skerter",
+    external: true,
+  },
+];
+---
+
+<BaseLayout
+  title="Contact — Skerter"
+  description="Contact Skerter about backend products, ML systems, and engineering work."
+>
+  <a class="skip-link" href="#contact-methods">Skip to contact methods</a>
+
+  <main class="contacts-page">
+    <header class="contacts-header">
+      <a class="contacts-header__identity" href="/" aria-label="Skerter home">
+        Skerter
+      </a>
+
+      <nav class="contacts-header__nav" aria-label="Primary navigation">
+        <a class="contacts-header__link" href="/projects/">
+          Projects <span aria-hidden="true">&nearr;</span>
+        </a>
+        <a class="contacts-header__link" href="/">
+          Home <span aria-hidden="true">&swarr;</span>
+        </a>
+      </nav>
+    </header>
+
+    <section class="contacts-intro" aria-labelledby="contacts-title">
+      <div>
+        <p>Contact / 03</p>
+        <h1 id="contacts-title">
+          Let&rsquo;s talk<span aria-hidden="true">.</span>
+        </h1>
+      </div>
+
+      <p class="contacts-intro__statement">
+        For backend products, ML systems, and practical engineering work.
+      </p>
+    </section>
+
+    <address id="contact-methods" class="contact-list" aria-label="Contact methods">
+      {
+        contacts.map((contact) => (
+          <a
+            class="contact-row"
+            href={contact.href}
+            target={contact.external ? "_blank" : undefined}
+            rel={contact.external ? "noreferrer" : undefined}
+            aria-label={`${contact.action} via ${contact.name}: ${contact.value}`}
+          >
+            <span class="contact-row__number" aria-hidden="true">
+              {contact.number}
+            </span>
+
+            <span class="contact-row__heading">
+              <span class="contact-row__name">{contact.name}</span>
+              <span class="contact-row__note">{contact.note}</span>
+            </span>
+
+            <span class="contact-row__value">{contact.value}</span>
+
+            <span class="contact-row__action">
+              {contact.action} <span aria-hidden="true">&nearr;</span>
+            </span>
+          </a>
+        ))
+      }
+    </address>
+
+    <footer class="contacts-footer">
+      <p>Python / backend / ML systems</p>
+      <p>2026</p>
+    </footer>
+  </main>
+</BaseLayout>
