@@ -97,6 +97,7 @@
 
 .project-row__heading,
 .project-row__description,
+.project-row__actions,
 .project-row__cta,
 .project-row__state {
   grid-column: 2;
@@ -127,11 +128,21 @@
   line-height: 1.5;
 }
 
-.project-row__cta,
+.project-row__actions,
 .project-row__state {
   justify-self: start;
   width: fit-content;
   max-width: 100%;
+}
+
+.project-row__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.project-row__cta,
+.project-row__state {
   min-height: 2.75rem;
 }
 
@@ -199,11 +210,15 @@
     padding-top: 0.25rem;
   }
 
-  .project-row__cta,
+  .project-row__actions,
   .project-row__state {
     grid-column: 4;
     align-self: start;
     justify-self: end;
+  }
+
+  .project-row__actions {
+    justify-content: flex-end;
   }
 }
 
