@@ -186,6 +186,10 @@
 }
 
 @media (min-width: 64rem) {
+  .project-row h2 {
+    white-space: nowrap;
+  }
+
   .project-row {
     grid-template-columns:
       2.5rem
