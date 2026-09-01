@@ -1,0 +1,117 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import "../styles/case-study.css";
+
+interface Fact {
+  label: string;
+  value: string;
+}
+
+interface ProjectLink {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  name: string;
+  statement: string;
+  facts: Fact[];
+  links: ProjectLink[];
+  nextLabel: string;
+  nextHref: string;
+}
+
+const {
+  title,
+  description,
+  eyebrow,
+  name,
+  statement,
+  facts,
+  links,
+  nextLabel,
+  nextHref,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <a class="skip-link" href="#case-study">Skip to case study</a>
+
+  <main class="case-page">
+    <header class="case-header">
+      <a class="case-header__identity" href="/" aria-label="Skerter home">
+        Skerter
+      </a>
+
+      <nav class="case-header__nav" aria-label="Primary navigation">
+        <a class="case-header__link" href="/projects/">
+          Projects <span aria-hidden="true">&swarr;</span>
+        </a>
+        <a class="case-header__link" href="/contacts/">
+          Contact <span aria-hidden="true">&nearr;</span>
+        </a>
+      </nav>
+    </header>
+
+    <article>
+      <header class="case-hero">
+        <div class="case-hero__title">
+          <p>{eyebrow}</p>
+          <h1>
+            {name}<span aria-hidden="true">.</span>
+          </h1>
+        </div>
+
+        <p class="case-hero__statement">{statement}</p>
+      </header>
+
+      <section class="case-summary" aria-label="Project summary">
+        <dl class="case-facts">
+          {
+            facts.map((fact) => (
+              <div class="case-fact">
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+
+        <nav class="case-actions" aria-label="Project links">
+          {
+            links.map((link) => (
+              <a href={link.href} target="_blank" rel="noreferrer">
+                <span>{link.label}</span>
+                <span aria-hidden="true">&nearr;</span>
+              </a>
+            ))
+          }
+        </nav>
+      </section>
+
+      <div id="case-study" class="case-body">
+        <slot />
+      </div>
+
+      <nav class="case-next" aria-label="Case study navigation">
+        <a href="/projects/">
+          <span>All projects</span>
+          <span aria-hidden="true">&swarr;</span>
+        </a>
+
+        <a href={nextHref}>
+          <span>Next / {nextLabel}</span>
+          <span aria-hidden="true">&nearr;</span>
+        </a>
+      </nav>
+    </article>
+
+    <footer class="case-footer">
+      <p>Python / backend / ML systems</p>
+      <p>2026</p>
+    </footer>
+  </main>
+</BaseLayout>

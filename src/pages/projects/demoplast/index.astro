@@ -1,0 +1,182 @@
+---
+import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
+
+const facts = [
+  { label: "Role", value: "Backend engineering" },
+  { label: "Context", value: "Commercial project showcase" },
+  { label: "Status", value: "Live" },
+  { label: "Core", value: "Django / PostgreSQL / HTMX" },
+];
+
+const links = [
+  { label: "Live demo", href: "https://demoplast.skerter.dev" },
+  {
+    label: "GitHub",
+    href: "https://github.com/Skerter/django-plastic-landing",
+  },
+  {
+    label: "Documentation",
+    href: "https://skerter.github.io/django-plastic-landing/",
+  },
+];
+---
+
+<CaseStudyLayout
+  title="DemoPlast case study — Skerter"
+  description="How DemoPlast keeps every lead durable while CRM and notification integrations run independently in the background."
+  eyebrow="Case study / 01"
+  name="DemoPlast"
+  statement="A lead survives even when integrations fail."
+  {facts}
+  {links}
+  nextLabel="DCP"
+  nextHref="/projects/dcp/"
+>
+  <section class="case-section" aria-labelledby="demoplast-context">
+    <p class="case-section__number" aria-hidden="true">01</p>
+
+    <div class="case-section__heading">
+      <h2 id="demoplast-context">Context</h2>
+    </div>
+
+    <div class="case-section__content">
+      <p>
+        DemoPlast is an anonymized showcase of a real commercial project: a
+        six-page product catalog and lead-generation site for a manufacturer.
+        Client data is replaced, while the architecture and engineering
+        decisions remain intact.
+      </p>
+      <p>
+        The product needed an indexable catalog, fast forms, editable business
+        details and reliable delivery to email, Telegram and amoCRM. It also
+        had to handle personal data deliberately instead of treating compliance
+        as a document added after launch.
+      </p>
+    </div>
+  </section>
+
+  <section class="case-section" aria-labelledby="demoplast-flow">
+    <p class="case-section__number" aria-hidden="true">02</p>
+
+    <div class="case-section__heading">
+      <h2 id="demoplast-flow">Lead flow</h2>
+    </div>
+
+    <ol class="case-flow-list">
+      <li class="case-flow">
+        <span class="case-flow__number" aria-hidden="true">01</span>
+        <div>
+          <h3>Validate at the boundary</h3>
+          <p>
+            Django validates consent, rate limits and the honeypot before the
+            application accepts a submission.
+          </p>
+        </div>
+      </li>
+      <li class="case-flow">
+        <span class="case-flow__number" aria-hidden="true">02</span>
+        <div>
+          <h3>Persist before integration</h3>
+          <p>
+            PostgreSQL receives the lead first and becomes the source of truth.
+            No external service sits on the critical request path.
+          </p>
+        </div>
+      </li>
+      <li class="case-flow">
+        <span class="case-flow__number" aria-hidden="true">03</span>
+        <div>
+          <h3>Fan out independent work</h3>
+          <p>
+            The dispatcher queues email, Telegram and amoCRM as separate
+            django-q2 tasks rather than one fragile notification chain.
+          </p>
+        </div>
+      </li>
+      <li class="case-flow">
+        <span class="case-flow__number" aria-hidden="true">04</span>
+        <div>
+          <h3>Retry one channel at a time</h3>
+          <p>
+            A CRM outage or expired OAuth token can be retried without losing
+            the submission or blocking the other delivery channels.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="case-section" aria-labelledby="demoplast-decisions">
+    <p class="case-section__number" aria-hidden="true">03</p>
+
+    <div class="case-section__heading">
+      <h2 id="demoplast-decisions">Decisions</h2>
+    </div>
+
+    <ol class="case-decision-list">
+      <li class="case-decision">
+        <span class="case-decision__number" aria-hidden="true">01</span>
+        <div>
+          <h3>Monolith over microservices</h3>
+          <p>
+            Six pages, a catalog and a form do not justify distributed
+            deployment complexity. One Django application keeps ownership and
+            operations explicit.
+          </p>
+        </div>
+      </li>
+      <li class="case-decision">
+        <span class="case-decision__number" aria-hidden="true">02</span>
+        <div>
+          <h3>Server rendering over a SPA</h3>
+          <p>
+            Django templates keep the catalog indexable. HTMX adds fragment
+            updates and validation feedback without turning the form into a
+            separate client application.
+          </p>
+        </div>
+      </li>
+      <li class="case-decision">
+        <span class="case-decision__number" aria-hidden="true">03</span>
+        <div>
+          <h3>Privacy inside the system</h3>
+          <p>
+            Consent is validated and timestamped, analytics wait for cookie
+            consent, and Sentry strips names, phone numbers and form bodies
+            before an event leaves the process.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="case-section" aria-labelledby="demoplast-shipped">
+    <p class="case-section__number" aria-hidden="true">04</p>
+
+    <div class="case-section__heading">
+      <h2 id="demoplast-shipped">What shipped</h2>
+    </div>
+
+    <div class="case-section__content">
+      <p>
+        The public repository preserves the production architecture while
+        remaining safe to run without real credentials.
+      </p>
+      <ul class="case-proof-list">
+        <li>Functional demo mode with generated catalog, images and leads.</li>
+        <li>
+          Tests for persistence, channel failures, services, consent-gated
+          analytics and the Sentry scrubber.
+        </li>
+        <li>
+          Automated image build and deployment through GitHub Actions, GHCR,
+          Docker Compose and Traefik.
+        </li>
+        <li>
+          Bilingual technical documentation with runbooks and architecture
+          decision records.
+        </li>
+      </ul>
+    </div>
+  </section>
+</CaseStudyLayout>

@@ -19,8 +19,12 @@ local variable typeface, Commissioner, and static Astro output.
 ## Pages
 
 - `/` — finished minimalist cover.
-- `/projects/` — accepted image-free project index. Individual case-study
-  routes are future work; the current project links lead to their repositories.
+- `/projects/` — accepted image-free project index with internal case studies
+  for DemoPlast and DCP.
+- `/projects/demoplast/` — commercial backend case study: durable lead flow,
+  isolated integrations, privacy, testing, and delivery.
+- `/projects/dcp/` — ML/MLOps case study: one workflow across pandas, local
+  Dask, and Kubernetes.
 - `/contacts/` — direct email, Telegram, and GitHub links in the same repeated
   typographic system; no contact form or client-side JavaScript.
 
@@ -34,8 +38,9 @@ The accepted projects concept is **Quiet Index**:
 - the selected work is DemoPlast, DCP, and Huld;
 - `DCP` is the display name; `Distributed churn prediction` remains in its
   metadata for clarity;
-- DemoPlast and DCP expose one `View project` action; Huld is explicitly marked
-  as private work in progress;
+- DemoPlast and DCP expose one `Read case study` action; their repository and
+  live-demo links live inside the case study. Huld is explicitly marked as
+  private work in progress;
 - there are no cards, technology chips, secondary live-demo links, bespoke
   project graphics, or entrance animations.
 

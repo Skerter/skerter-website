@@ -1,0 +1,186 @@
+---
+import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
+
+const facts = [
+  { label: "Role", value: "End-to-end engineering" },
+  { label: "Context", value: "ML / MLOps system" },
+  { label: "Status", value: "Live demo" },
+  { label: "Core", value: "Python / Dask / Kubernetes" },
+];
+
+const links = [
+  { label: "Live demo", href: "https://churn.skerter.dev" },
+  {
+    label: "GitHub",
+    href: "https://github.com/Skerter/distributed-churn-prediction",
+  },
+  { label: "API", href: "https://api.churn.skerter.dev/docs" },
+  { label: "MLflow", href: "https://mlflow.churn.skerter.dev" },
+];
+---
+
+<CaseStudyLayout
+  title="DCP case study — Skerter"
+  description="How Distributed Churn Prediction runs one ML workflow through pandas, local Dask and Kubernetes without duplicating the application core."
+  eyebrow="Case study / 02"
+  name="DCP"
+  statement="One workflow. Three runtimes."
+  {facts}
+  {links}
+  nextLabel="DemoPlast"
+  nextHref="/projects/demoplast/"
+>
+  <section class="case-section" aria-labelledby="dcp-context">
+    <p class="case-section__number" aria-hidden="true">01</p>
+
+    <div class="case-section__heading">
+      <h2 id="dcp-context">Context</h2>
+    </div>
+
+    <div class="case-section__content">
+      <p>
+        Distributed Churn Prediction is an engineering ML/MLOps project that
+        carries the same workflow from one machine to a distributed Kubernetes
+        environment.
+      </p>
+      <p>
+        The pipeline validates and loads data, creates features, writes Parquet,
+        trains an XGBoost model, evaluates it and stores the resulting model,
+        metrics, plots and logs. The challenge was to change execution scale
+        without creating three unrelated applications.
+      </p>
+    </div>
+  </section>
+
+  <section class="case-section" aria-labelledby="dcp-flow">
+    <p class="case-section__number" aria-hidden="true">02</p>
+
+    <div class="case-section__heading">
+      <h2 id="dcp-flow">Run flow</h2>
+    </div>
+
+    <ol class="case-flow-list">
+      <li class="case-flow">
+        <span class="case-flow__number" aria-hidden="true">01</span>
+        <div>
+          <h3>Enter through one of four interfaces</h3>
+          <p>
+            CLI, Web API, dashboard and Telegram bot invoke the same application
+            workflow instead of owning separate pipeline logic.
+          </p>
+        </div>
+      </li>
+      <li class="case-flow">
+        <span class="case-flow__number" aria-hidden="true">02</span>
+        <div>
+          <h3>Create a run, not a long request</h3>
+          <p>
+            The application returns a run_id immediately. Status remains
+            addressable while the long-running pipeline continues separately.
+          </p>
+        </div>
+      </li>
+      <li class="case-flow">
+        <span class="case-flow__number" aria-hidden="true">03</span>
+        <div>
+          <h3>Select the execution profile</h3>
+          <p>
+            Configuration chooses pandas, a local Dask cluster or Dask on
+            Kubernetes while the use cases and pipeline stages stay consistent.
+          </p>
+        </div>
+      </li>
+      <li class="case-flow">
+        <span class="case-flow__number" aria-hidden="true">04</span>
+        <div>
+          <h3>Persist status and artifacts</h3>
+          <p>
+            The run store exposes lifecycle state while models, metrics, plots,
+            logs and MLflow experiments preserve the output of each execution.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="case-section" aria-labelledby="dcp-decisions">
+    <p class="case-section__number" aria-hidden="true">03</p>
+
+    <div class="case-section__heading">
+      <h2 id="dcp-decisions">Decisions</h2>
+    </div>
+
+    <ol class="case-decision-list">
+      <li class="case-decision">
+        <span class="case-decision__number" aria-hidden="true">01</span>
+        <div>
+          <h3>One core, multiple surfaces</h3>
+          <p>
+            Presentation adapters translate HTTP, CLI and chat interactions.
+            Dataset, feature, training and evaluation behavior remains in the
+            application layer.
+          </p>
+        </div>
+      </li>
+      <li class="case-decision">
+        <span class="case-decision__number" aria-hidden="true">02</span>
+        <div>
+          <h3>Profiles over forks</h3>
+          <p>
+            Runtime-specific orchestration changes how work is executed, not
+            what the workflow means. A local run can grow into a Dask cluster
+            without rewriting the product boundary.
+          </p>
+        </div>
+      </li>
+      <li class="case-decision">
+        <span class="case-decision__number" aria-hidden="true">03</span>
+        <div>
+          <h3>Explicit lifecycle for long work</h3>
+          <p>
+            queued, running, succeeded and failed are durable concepts. After a
+            process restart, stale active runs are marked failed instead of
+            remaining indefinitely ambiguous.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="case-section" aria-labelledby="dcp-shipped">
+    <p class="case-section__number" aria-hidden="true">04</p>
+
+    <div class="case-section__heading">
+      <h2 id="dcp-shipped">What shipped</h2>
+    </div>
+
+    <div class="case-section__content">
+      <p>
+        The project exposes the same system through local tooling and a deployed
+        demonstration environment.
+      </p>
+      <ul class="case-proof-list">
+        <li>pandas, local Dask and Kubernetes execution profiles.</li>
+        <li>
+          CLI, FastAPI, browser dashboard and Telegram interfaces over one core.
+        </li>
+        <li>
+          Run cancellation, timeout handling and stale-run recovery after a
+          process restart.
+        </li>
+        <li>
+          MLflow tracking that degrades to a warning instead of failing the
+          pipeline when tracking is unavailable.
+        </li>
+        <li>
+          Smoke, unit and integration tests plus container builds in GitHub
+          Actions.
+        </li>
+        <li>
+          Dask Operator manifests, Kustomize overlays and shared persistent
+          storage for scheduler, workers and pipeline jobs.
+        </li>
+      </ul>
+    </div>
+  </section>
+</CaseStudyLayout>
