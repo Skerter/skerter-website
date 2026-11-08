@@ -46,20 +46,16 @@ jobs:
           host: ${{ secrets.VDS_HOST }}
           username: ${{ secrets.VDS_USER }}
           key: ${{ secrets.VDS_SSH_PRIVATE_KEY }}
+          command_timeout: 30m
           script: |
-            set -e
-            mkdir -p /opt/skerter-website
-            cd /opt/skerter-website
-
-            if [ -d .git ]; then
-              git fetch origin master
-              git checkout master
-              git reset --hard origin/master
-            else
-              git clone https://github.com/Skerter/skerter-website.git .
-            fi
-
-            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ secrets.GHCR_USER }} --password-stdin || true
-            docker compose up -d --build --remove-orphans
+            set -eu
+            cd /opt/projects/skerter-website
+            test -f .env
+            git pull --ff-only origin master
+            export IMAGE_TAG=${{ github.sha }}
+            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u "${{ secrets.GHCR_USER }}" --password-stdin
+            docker network inspect proxy > /dev/null
+            docker compose config --quiet
+            docker compose pull
+            docker compose up -d --wait --wait-timeout 180
             docker compose ps
-            docker image prune -f

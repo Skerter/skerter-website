@@ -1,8 +1,8 @@
+name: skerter-website
+
 services:
   site:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/skerter/skerter-website:${IMAGE_TAG:-latest}
     restart: unless-stopped
     networks:
       - proxy
@@ -11,11 +11,8 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.skerter.rule=Host(`${SITE_DOMAIN}`)"
       - "traefik.http.routers.skerter.entrypoints=websecure"
-      - "traefik.http.routers.skerter.tls.certresolver=le"
+      - "traefik.http.routers.skerter.tls.certresolver=letsencrypt"
       - "traefik.http.services.skerter.loadbalancer.server.port=80"
-      - "traefik.http.routers.skerter-http.rule=Host(`${SITE_DOMAIN}`)"
-      - "traefik.http.routers.skerter-http.entrypoints=web"
-      - "traefik.http.routers.skerter-http.middlewares=redirect-to-https@file"
 
 networks:
   proxy:
